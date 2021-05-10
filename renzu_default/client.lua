@@ -1,6 +1,14 @@
 -- CREDITS https://github.com/OfficialDarkzy/DRP-Core/blob/master/drp_core/client.lua
 Citizen.CreateThread(function()
     SetNuiFocus(false, false)
+    DisableVehicleDistantlights(true)
+    SwitchTrainTrack(0, true)   
+    SwitchTrainTrack(3, true)   
+    SetRandomTrains(1)
+    SetOverrideWeather("CLEAR")
+    StartAudioScene("CHARACTER_CHANGE_IN_SKY_SCENE") -- disable shity ambience
+    --CancelCurrentPoliceReport(1)
+    DistantCopCarSirens(false)
 end)
 ---------------------------------------------------------------------------
 --- You Can Edit The Below To Your Requirements, 
@@ -21,6 +29,11 @@ AddEventHandler("playerSpawned", function()
         SetPedMinGroundTimeForStungun(ped, 6000) -- Time spent on ground after being tased (in ms)
         SetPedConfigFlag(ped, 184, true) -- Disable Seat Shuffle
         SetPedConfigFlag(ped, 35, false) -- Disable Automatic Bike Helmet
+        SwitchTrainTrack(0, true)   
+        SwitchTrainTrack(3, true)   
+        SetRandomTrains(1)
+        StartAudioScene("CHARACTER_CHANGE_IN_SKY_SCENE") -- disable shity ambience
+        SetOverrideWeather("CLEAR")
     end)
 end)
 ---------------------------------------------------------------------------
@@ -63,6 +76,7 @@ Citizen.CreateThread(function()
 			HideHudComponentThisFrame(6) -- Vehicle Name
 		end
 		DisablePlayerVehicleRewards(PlayerId())
+        SetPedConfigFlag(PlayerPedId(), 35, false) --To prevent auto-motorcycle helmet
 ---------------------------------------------------------------------------
         Citizen.Wait(5)
     end
